@@ -51,7 +51,7 @@ export default function PageHero({
         <motion.p className="eyebrow mb-7 text-champagne" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.9, delay: 0.5 }}>
           {eyebrow}
         </motion.p>
-        <Lines as="h1" lines={lines} className="display-xl !text-[clamp(2.5rem,6.2vw,6.6rem)]" delay={0.4} />
+        <Lines as="h1" lines={lines} className="display-xl" delay={0.4} />
         {text && (
           <motion.p className="lede mt-8 text-ivory/85" initial={reduce ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1 }}>
             {text}

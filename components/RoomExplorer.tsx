@@ -45,7 +45,7 @@ export default function RoomExplorer() {
             Room by room
           </p>
         </Reveal>
-        <Lines lines={["EVERY ROOM DESERVES", "*EXTRAORDINARY CARE.*"]} className="display-lg" />
+        <Lines lines={["Every room deserves", "*extraordinary care.*"]} className="display-lg" />
 
         <div className="mt-16 grid gap-10 lg:grid-cols-12 lg:gap-14">
           {/* stage */}
@@ -121,7 +121,7 @@ export default function RoomExplorer() {
                 animate={{ opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 } }}
                 exit={{ opacity: 0, y: -10, transition: { duration: 0.25 } }}
               >
-                <h3 className="font-display text-4xl">{r.title}</h3>
+                <h3 className="font-display text-2xl">{r.title}</h3>
                 <p className="mt-3 max-w-sm opacity-80">{r.blurb}</p>
                 <ul className="mt-6 space-y-2 text-[0.9rem]">
                   {r.focus.map((f) => (

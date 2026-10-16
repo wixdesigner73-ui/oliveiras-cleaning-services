@@ -72,7 +72,7 @@ export default function CleaningDemo() {
         <div className="demo-veil" />
         <div className="demo-copy">
           <p className="eyebrow text-champagne">Interactive cleaning demonstration</p>
-          <h2 id="demo-title" className="display-lg mt-4 text-ivory !text-[clamp(2.4rem,5.4vw,5.4rem)]">
+          <h2 id="demo-title" className="display-lg mt-4 text-ivory">
             From grime
             <br />
             <em>to gleam.</em>
@@ -80,14 +80,14 @@ export default function CleaningDemo() {
           <p className="mt-4 max-w-sm text-ivory/80">Keep scrolling to wipe the kitchen clean, surface by surface.</p>
         </div>
         <div className="demo-readout" aria-live="polite">
-          <span className="font-display text-[clamp(3.6rem,9vw,8rem)] leading-none text-ivory">
+          <span className="font-display text-[clamp(2.4rem,4.4vw,3.6rem)] leading-none text-ivory">
             <span ref={num}>{staticMode ? "100" : "0"}</span>
             <span className="text-champagne">%</span>
           </span>
           <span className="eyebrow mt-4 block text-champagne">
             {STEPS[step].n} — {STEPS[step].t}
           </span>
-          <span className="mt-1 block max-w-[17rem] font-display text-xl text-ivory">{STEPS[step].d}</span>
+          <span className="mt-1 block max-w-[17rem] font-display text-lg text-ivory">{STEPS[step].d}</span>
         </div>
         <span className="demo-tag">Illustrative cleaning concept</span>
       </div>

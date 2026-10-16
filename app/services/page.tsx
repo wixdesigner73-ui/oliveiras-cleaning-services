@@ -21,7 +21,7 @@ export default function Services() {
       <PageHero
         kind="kitchen"
         eyebrow="Our services"
-        lines={["CLEANING SERVICES,", "*BEAUTIFULLY*", "REIMAGINED."]}
+        lines={["Cleaning services,", "*beautifully reimagined.*"]}
         text="Thoughtful cleaning solutions for spaces that deserve exceptional care."
       />
       {SERVICES.map((s, i) => (
@@ -29,7 +29,7 @@ export default function Services() {
       ))}
       <CleaningDemo />
       <FinalCta
-        lines={["YOUR SPACE DESERVES", "*THE BEST CARE.*"]}
+        lines={["Your space deserves", "*the best care.*"]}
         label="Request a Free Quote"
         href="/contact/"
         scene="living"

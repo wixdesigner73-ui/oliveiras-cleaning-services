@@ -27,7 +27,7 @@ export default function FinalCta({
         <Reveal>
           <p className="eyebrow mb-8 text-champagne">{eyebrow}</p>
         </Reveal>
-        <Lines lines={lines} className="display-xl mx-auto max-w-5xl !text-[clamp(2.6rem,6.2vw,6.4rem)]" />
+        <Lines lines={lines} className="display-xl mx-auto max-w-5xl" />
         {text && (
           <Reveal delay={0.2} className="mx-auto mt-8 max-w-xl">
             <p className="lede mx-auto text-ivory/80">{text}</p>

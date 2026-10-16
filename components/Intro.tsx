@@ -9,7 +9,7 @@ export default function Intro() {
           <Reveal>
             <p className="eyebrow mb-8 text-[#7d6840]">Welcome to Oliveira&rsquo;s</p>
           </Reveal>
-          <Lines lines={["Beautiful Spaces.", "*Thoughtfully* Cleaned."]} className="display-lg text-emerald-deep !text-[clamp(2.4rem,4.4vw,4.8rem)]" />
+          <Lines lines={["Beautiful spaces.", "Thoughtfully cleaned."]} className="display-lg text-emerald-deep" />
           <Reveal delay={0.2} className="mt-8">
             <p className="lede text-charcoal/80">
               At Oliveira&rsquo;s Cleaning Services, we believe a clean space should feel as beautiful as it looks. Our approach

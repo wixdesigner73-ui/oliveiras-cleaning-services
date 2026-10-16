@@ -136,7 +136,7 @@ export default function ContactForm() {
               <motion.circle cx="36" cy="36" r="33" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.1 }} />
               <motion.path d="M22 37l10 10 18-22" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.8, delay: 0.7 }} />
             </svg>
-            <h3 className="mt-8 font-display text-5xl italic text-emerald-deep">Thank you.</h3>
+            <h3 className="mt-8 font-display text-3xl text-emerald-deep">Thank you.</h3>
             <p className="mt-4 max-w-md text-charcoal/80">
               Your request has been sent to {BUSINESS.contact} at Oliveira&rsquo;s Cleaning Services. We&rsquo;ll be in touch about your free quote.
             </p>

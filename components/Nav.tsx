@@ -71,7 +71,7 @@ export default function Nav() {
             <nav aria-label="Mobile" className="flex flex-col gap-4">
               {NAV.map((n, i) => (
                 <motion.div key={n.href} initial={{ y: 24, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.12 + i * 0.06, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
-                  <Link href={n.href} className="font-display text-5xl">
+                  <Link href={n.href} className="font-display text-3xl">
                     {n.label}
                   </Link>
                 </motion.div>

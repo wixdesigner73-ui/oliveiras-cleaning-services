@@ -19,7 +19,7 @@ export default function Testimonials() {
             <Reveal>
               <p className="eyebrow mb-6 text-[#8a6a32]">Kind words</p>
             </Reveal>
-            <Lines lines={["WHAT OUR CLIENTS", "*ARE SAYING.*"]} className="display-lg text-emerald-deep [--em:#9c7b3f]" />
+            <Lines lines={["What our clients", "*are saying.*"]} className="display-lg text-emerald-deep [--em:#9c7b3f]" />
           </div>
           <div className="flex gap-3">
             <button className="hero-arrow" style={arrow} onClick={() => scroll(-1)} aria-label="Previous review">
@@ -41,7 +41,7 @@ export default function Testimonials() {
               <div className="mb-4 text-champagne" aria-label={`${r.rating} out of 5 stars`}>
                 {"★".repeat(Math.round(r.rating))}
               </div>
-              <blockquote className="font-display text-3xl italic leading-snug text-emerald-deep">“{r.text}”</blockquote>
+              <blockquote className="font-display text-xl leading-snug text-emerald-deep">“{r.text}”</blockquote>
               <figcaption className="eyebrow mt-8 text-charcoal/70">
                 {r.name}
                 {r.source ? ` · ${r.source}` : ""}

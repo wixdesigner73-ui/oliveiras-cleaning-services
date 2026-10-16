@@ -144,7 +144,7 @@ export default function SofaScroll() {
 
         <div id="sofa-head" className="sofa-head">
           <p className="eyebrow text-[#7d6840]">Cleaning, up close</p>
-          <h2 id="sofa-title" className="display-lg mt-4 text-emerald-deep !text-[clamp(2.3rem,5vw,4.8rem)]">
+          <h2 id="sofa-title" className="display-lg mt-4 text-emerald-deep">
             The beauty is in <em>the details.</em>
           </h2>
           <p className="mt-5 max-w-md text-charcoal/75">Keep scrolling and watch a single mark disappear.</p>
@@ -166,7 +166,7 @@ export default function SofaScroll() {
           <span className="eyebrow text-champagne">
             {STEPS[step].n} — {STEPS[step].t}
           </span>
-          <span className="mt-1 block font-display text-2xl text-ivory sm:text-3xl">{STEPS[step].d}</span>
+          <span className="mt-1 block font-display text-xl text-ivory sm:text-2xl">{STEPS[step].d}</span>
         </p>
 
         <div id="sofa-end" className="sofa-end" style={staticMode ? { opacity: 1 } : undefined}>

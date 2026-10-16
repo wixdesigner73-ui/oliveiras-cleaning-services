@@ -26,7 +26,7 @@ export default function ServiceShowcase() {
                 Our Cleaning Services
               </p>
             </Reveal>
-            <Lines lines={["EXCEPTIONAL CARE", "*FOR EVERY SPACE.*"]} className="display-lg" />
+            <Lines lines={["Exceptional care", "*for every space.*"]} className="display-lg" />
           </div>
           <Reveal className="lg:col-span-4" delay={0.2}>
             <p className="lede opacity-75">Four ways we help your spaces feel clean, calm and beautifully cared for.</p>

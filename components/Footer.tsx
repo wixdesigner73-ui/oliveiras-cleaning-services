@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="wrap py-24 md:py-32">
         <div className="grid gap-16 md:grid-cols-12">
           <div className="md:col-span-6">
-            <p className="font-display text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.95]">Oliveira&rsquo;s</p>
+            <p className="font-display text-[clamp(1.9rem,3vw,2.6rem)] leading-tight">Oliveira&rsquo;s</p>
             <p className="eyebrow mt-4 text-champagne">Cleaning Services</p>
             <p className="mt-8 max-w-sm text-ivory/65">Thoughtful cleaning for homes and spaces in {BUSINESS.location}.</p>
           </div>

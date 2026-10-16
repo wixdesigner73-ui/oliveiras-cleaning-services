@@ -14,13 +14,13 @@ export default function About() {
       <PageHero
         kind="living"
         eyebrow="About us"
-        lines={["BEAUTIFUL SPACES", "BEGIN WITH", "*THOUGHTFUL CARE.*"]}
+        lines={["Beautiful spaces begin", "with *thoughtful care.*"]}
       />
       <Story />
       <Approach />
       <Values />
       <FinalCta
-        lines={["LET’S CREATE A CLEANER", "*SPACE TOGETHER.*"]}
+        lines={["Let’s create a cleaner", "*space together.*"]}
         label="Contact Us"
         href="/contact/"
         scene="empty"

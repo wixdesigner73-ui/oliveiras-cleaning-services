@@ -17,7 +17,7 @@ export default function BeforeAfter() {
             <Reveal>
               <p className="eyebrow mb-8 text-champagne">Drag to reveal</p>
             </Reveal>
-            <Lines lines={["SEE THE", "*TRANSFORMATION.*"]} className="display-lg" />
+            <Lines lines={["See the", "*transformation.*"]} className="display-lg" />
           </div>
           <Reveal className="lg:col-span-5" delay={0.2}>
             <p className="lede text-ivory/70">
@@ -31,7 +31,7 @@ export default function BeforeAfter() {
             <Reveal key={it.kind} className={it.span} delay={(i % 2) * 0.12}>
               <Compare kind={it.kind} label={it.label} className={`${it.aspect} w-full`} />
               <div className="mt-4 flex items-baseline justify-between border-b border-ivory/20 pb-3">
-                <h3 className="font-display text-2xl">{it.label}</h3>
+                <h3 className="font-display text-xl">{it.label}</h3>
                 <span className="eyebrow !text-[0.58rem] text-champagne/90">Illustrative</span>
               </div>
             </Reveal>

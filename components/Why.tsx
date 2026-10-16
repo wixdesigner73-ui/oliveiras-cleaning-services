@@ -51,12 +51,12 @@ export default function Why() {
         <Reveal>
           <p className="eyebrow mb-8 text-[#7d6840]">Why choose Oliveira&rsquo;s</p>
         </Reveal>
-        <Lines lines={["A HIGHER STANDARD", "*OF CARE.*"]} className="display-lg text-emerald-deep" />
+        <Lines lines={["A higher standard", "*of care.*"]} className="display-lg text-emerald-deep" />
         <div className="mt-20 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
           {ITEMS.map((it, i) => (
             <Reveal key={it.t} delay={i * 0.1} className="why-card border-t border-emerald-deep/25 pt-8">
               <span className="why-icon text-emerald-deep">{it.icon}</span>
-              <h3 className="mt-10 font-display text-3xl leading-[1.05] text-emerald-deep">{it.t}</h3>
+              <h3 className="mt-8 font-display text-xl leading-[1.15] text-emerald-deep">{it.t}</h3>
               <p className="mt-4 text-charcoal/70">{it.d}</p>
             </Reveal>
           ))}

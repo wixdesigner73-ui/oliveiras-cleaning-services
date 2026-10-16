@@ -20,7 +20,7 @@ export default function Home() {
       <Why />
       <Testimonials />
       <FinalCta
-        lines={["COME HOME TO", "*SOMETHING BEAUTIFUL.*"]}
+        lines={["Come home to", "*something beautiful.*"]}
         text="Let Oliveira’s Cleaning Services help you create a cleaner, more welcoming space."
         label="Request a Free Quote"
         href="/contact/"

@@ -42,7 +42,7 @@ export default function ServiceSection({ s, index, extra }: { s: Service; index:
             </p>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="display-lg !text-[clamp(2.6rem,5vw,5.4rem)]">{s.title}</h2>
+            <h2 className="display-lg">{s.title}</h2>
           </Reveal>
           <Reveal delay={0.15}>
             <p className="lede mt-7" style={{ color: s.inkSoft }}>

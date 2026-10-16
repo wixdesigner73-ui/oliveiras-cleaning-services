@@ -9,6 +9,7 @@ import { getGsap, prefersReducedMotion } from "../lib/gsap";
 import Photo from "./Photo";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const AUTOPLAY_MS = 7000;
 
 export default function Hero() {
   const [idx, setIdx] = useState(0);
@@ -95,6 +96,30 @@ export default function Hero() {
     };
   }, []);
 
+  /* ── autoplay: advance every few seconds; pauses on hover/focus, when hidden or off-screen, or when the user pauses ── */
+  const [hoverPause, setHoverPause] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+  const [inView, setInView] = useState(true);
+  const [tabHidden, setTabHidden] = useState(false);
+  const [reduced, setReduced] = useState(true); // assume reduced until checked, so SSR/first paint never autoplays
+  useEffect(() => setReduced(prefersReducedMotion()), []);
+  useEffect(() => {
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.4 });
+    io.observe(heroRef.current!);
+    const vis = () => setTabHidden(document.hidden);
+    document.addEventListener("visibilitychange", vis);
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", vis);
+    };
+  }, []);
+  const playing = !reduced && !userPaused && !hoverPause && inView && !tabHidden;
+  useEffect(() => {
+    if (!playing) return;
+    const t = setTimeout(() => go(current.current + 1), AUTOPLAY_MS);
+    return () => clearTimeout(t);
+  }, [playing, idx, go]);
+
   /* ── nav ink follows the theme ── */
   useEffect(() => {
     document.documentElement.style.setProperty("--nav-ink", s.ink);
@@ -164,7 +189,16 @@ export default function Hero() {
   const style = { "--bg1": s.bg1, "--accent": s.accent, "--ink": s.ink, "--ink-soft": s.inkSoft } as React.CSSProperties;
 
   return (
-    <section ref={heroRef} className="hero" style={style} aria-roledescription="carousel" aria-label="Cleaning services">
+    <section
+      ref={heroRef}
+      className="hero"
+      style={{ ...style, "--autoplay": `${AUTOPLAY_MS}ms` } as React.CSSProperties}
+      data-play={playing ? "true" : "false"}
+      aria-roledescription="carousel"
+      aria-label="Cleaning services"
+      onFocus={(e) => e.target.matches(":focus-visible") && setHoverPause(true)}
+      onBlur={() => setHoverPause(false)}
+    >
       {/* stage */}
       <div className="hero-stage-wrap" onPointerDown={onDown} onPointerUp={onUp} onPointerCancel={() => (swipe.current = null)}>
         <div ref={stageRef} className="hero-stage">
@@ -279,6 +313,19 @@ export default function Hero() {
           <button className="hero-arrow" onClick={() => go(idx + 1)} aria-label="Next service">
             →
           </button>
+          {!reduced && (
+            <button className="hero-arrow" onClick={() => setUserPaused((p) => !p)} aria-label={userPaused ? "Play automatic slideshow" : "Pause automatic slideshow"}>
+              {userPaused ? (
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor" aria-hidden>
+                  <path d="M0 0l10 6-10 6z" />
+                </svg>
+              ) : (
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor" aria-hidden>
+                  <path d="M0 0h3.4v12H0zM6.6 0H10v12H6.6z" />
+                </svg>
+              )}
+            </button>
+          )}
         </div>
       </div>
     </section>

@@ -18,7 +18,7 @@ export function Story() {
           <Reveal>
             <p className="eyebrow mb-8 text-[#7d6840]">Our story</p>
           </Reveal>
-          <Lines lines={["Dedicated to spaces", "that feel *welcoming.*"]} className="display-lg text-emerald-deep !text-[clamp(2.3rem,4.4vw,4.8rem)]" />
+          <Lines lines={["Dedicated to spaces", "that feel *welcoming.*"]} className="display-lg text-emerald-deep" />
           <Reveal delay={0.15} className="mt-8 space-y-5 text-charcoal/80">
             <p className="lede">
               Oliveira&rsquo;s Cleaning Services is dedicated to helping homes and spaces feel clean, comfortable, and welcoming.
@@ -56,18 +56,18 @@ export function Approach() {
         <Reveal>
           <p className="eyebrow mb-8 text-champagne">Our approach</p>
         </Reveal>
-        <Lines lines={["THREE QUIET STEPS,", "*ONE BEAUTIFUL RESULT.*"]} className="display-lg" />
+        <Lines lines={["Three quiet steps,", "*one beautiful result.*"]} className="display-lg" />
         <div className="mt-20 grid gap-14 lg:grid-cols-3 lg:gap-10">
           {STEPS.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.15}>
               <div className="border-t border-ivory/30 pt-6">
-                <span className="font-display text-5xl text-champagne">{s.n}</span>
+                <span className="font-display text-2xl text-champagne">{s.n}</span>
                 <div className="mt-6 aspect-[4/3] overflow-hidden">
                   <div className="h-full w-full transition-transform duration-[1600ms] ease-[cubic-bezier(.22,1,.36,1)] hover:scale-105">
                     <Photo kind={s.scene} clean={s.clean} />
                   </div>
                 </div>
-                <h3 className="mt-7 font-display text-3xl leading-tight">{s.t}</h3>
+                <h3 className="mt-6 font-display text-xl leading-tight">{s.t}</h3>
                 <p className="mt-3 max-w-xs text-ivory/70">{s.d}</p>
               </div>
             </Reveal>
@@ -94,7 +94,7 @@ export function Values() {
         <Reveal>
           <p className="eyebrow mb-8 text-[#7d6840]">Our values</p>
         </Reveal>
-        <Lines lines={["WHAT GUIDES", "*EVERY VISIT.*"]} className="display-lg text-emerald-deep" />
+        <Lines lines={["What guides", "*every visit.*"]} className="display-lg text-emerald-deep" />
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-20">
           <ul className="lg:col-span-6">
             {VALUES.map((v, k) => (
@@ -106,9 +106,9 @@ export function Values() {
                   onClick={() => setI(k)}
                   aria-pressed={i === k}
                 >
-                  <span className="font-display text-lg opacity-60">0{k + 1}</span>
+                  <span className="font-display text-sm opacity-60">0{k + 1}</span>
                   <span className="flex-1">
-                    <span className={`block font-display text-[clamp(1.9rem,3.4vw,3.2rem)] leading-none transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${i === k ? "translate-x-3" : "opacity-60"}`}>{v.t}</span>
+                    <span className={`block font-display text-[clamp(1.35rem,2vw,1.8rem)] leading-tight transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${i === k ? "translate-x-3" : "opacity-60"}`}>{v.t}</span>
                     <span className={`grid transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${i === k ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 [@media(hover:none)]:grid-rows-[1fr] [@media(hover:none)]:opacity-100"}`}>
                       <span className="overflow-hidden">
                         <span className="block max-w-md pl-3 pt-3 text-charcoal/75">{v.d}</span>

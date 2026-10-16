@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <>
-      <PageHero kind="bedroom" eyebrow="Contact" lines={["LET’S MAKE YOUR", "*SPACE SHINE.*"]} tall={false} position="50% 60%" />
+      <PageHero kind="bedroom" eyebrow="Contact" lines={["Let’s make your", "*space shine.*"]} tall={false} position="50% 60%" />
       <section className="bg-ivory">
         <div className="grid lg:grid-cols-2">
           <div className="relative overflow-hidden bg-emerald-deep text-ivory">
@@ -27,7 +27,7 @@ export default function Contact() {
                   <p className="eyebrow mb-8 text-champagne">Say hello</p>
                 </Reveal>
                 <Reveal delay={0.1}>
-                  <h2 className="display-md !text-[clamp(2.2rem,3.6vw,3.8rem)]">
+                  <h2 className="display-md">
                     Tell us about <em>your space.</em>
                   </h2>
                 </Reveal>
@@ -40,7 +40,7 @@ export default function Contact() {
 
               <Reveal delay={0.25}>
                 <div className="border-t border-ivory/25 pt-8">
-                  <p className="font-display text-2xl">{BUSINESS.name}</p>
+                  <p className="font-display text-xl">{BUSINESS.name}</p>
                   <dl className="mt-6 space-y-5">
                     <div>
                       <dt className="eyebrow !text-[0.6rem] text-champagne">Contact</dt>
@@ -80,7 +80,7 @@ export default function Contact() {
               <p className="eyebrow mb-8 text-[#7d6840]">Request a free quote</p>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="mb-12 font-display text-5xl text-emerald-deep">
+              <h2 className="mb-12 font-display text-3xl text-emerald-deep">
                 Begin <em>here.</em>
               </h2>
             </Reveal>
