@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import type { SceneKey } from "../lib/site";
 import { prefersReducedMotion } from "../lib/gsap";
-import Scene from "./Scene";
+import Photo from "./Photo";
 
 /** Draggable before/after. Left = before (untidy), right = after (clean). Position lives in a CSS var for 60fps drags. */
 export default function Compare({ kind, label, className = "" }: { kind: SceneKey; label: string; className?: string }) {
@@ -60,10 +60,10 @@ export default function Compare({ kind, label, className = "" }: { kind: SceneKe
       onPointerCancel={() => (drag.current = false)}
     >
       <div className="absolute inset-0">
-        <Scene kind={kind} clean={1} title={`${label} after cleaning (illustrative)`} />
+        <Photo kind={kind} clean={1} alt={`${label} after cleaning (illustrative)`} />
       </div>
       <div className="compare-before absolute inset-0">
-        <Scene kind={kind} clean={0} title={`${label} before cleaning (illustrative)`} />
+        <Photo kind={kind} clean={0} alt={`${label} before cleaning (illustrative)`} />
       </div>
       <span className="compare-chip left-4">Before</span>
       <span className="compare-chip right-4">After</span>

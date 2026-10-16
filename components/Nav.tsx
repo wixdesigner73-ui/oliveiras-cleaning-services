@@ -26,22 +26,24 @@ export default function Nav() {
     };
   }, [open]);
 
-  const active = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const clean = base && path.startsWith(base) ? path.slice(base.length) || "/" : path;
+  const active = (href: string) => (href === "/" ? clean === "/" : clean.startsWith(href));
 
   return (
     <>
       <header className={`nav ${scrolled || open ? "nav-solid" : ""}`}>
         <div className="wrap flex h-full items-center justify-between">
-          <Link href="/" aria-label="Oliveira's Cleaning Services — Home" className="nav-fg">
+          <Link href="/" aria-label="Oliveira’s Cleaning Services — Home" className="nav-fg">
             <Wordmark />
           </Link>
           <nav aria-label="Primary" className="hidden items-center gap-10 lg:flex">
             {NAV.map((n) => (
-              <Link key={n.href} href={n.href} aria-current={active(n.href) ? "page" : undefined} className="ulink nav-fg eyebrow !tracking-[0.24em]">
+              <Link key={n.href} href={n.href} aria-current={active(n.href) ? "page" : undefined} className="ulink nav-fg eyebrow !text-[0.66rem]">
                 {n.label}
               </Link>
             ))}
-            <Link href="/contact/" className="btn btn-gold !py-3 !px-6">
+            <Link href="/contact/" className="btn btn-ghost nav-fg !px-5 !py-3">
               Get a Quote
             </Link>
           </nav>
@@ -61,20 +63,20 @@ export default function Nav() {
         {open && (
           <motion.div
             className="fixed inset-0 z-[90] flex flex-col justify-center bg-emerald-deep px-8 text-ivory lg:hidden"
-            initial={{ clipPath: "circle(0% at 90% 4%)" }}
-            animate={{ clipPath: "circle(150% at 90% 4%)" }}
-            exit={{ clipPath: "circle(0% at 90% 4%)" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.45 }}
           >
-            <nav aria-label="Mobile" className="flex flex-col gap-5">
+            <nav aria-label="Mobile" className="flex flex-col gap-4">
               {NAV.map((n, i) => (
-                <motion.div key={n.href} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.25 + i * 0.07, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
-                  <Link href={n.href} className="font-display text-6xl italic">
+                <motion.div key={n.href} initial={{ y: 24, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.12 + i * 0.06, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}>
+                  <Link href={n.href} className="font-display text-5xl">
                     {n.label}
                   </Link>
                 </motion.div>
               ))}
-              <motion.div initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6, duration: 0.7 }} className="mt-6">
+              <motion.div initial={{ y: 24, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.45, duration: 0.7 }} className="mt-6">
                 <Link href="/contact/" className="btn btn-gold">
                   Get a Quote <span className="arrow">→</span>
                 </Link>
@@ -83,7 +85,6 @@ export default function Nav() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </>
   );
 }

@@ -4,31 +4,21 @@ import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BUSINESS, type SceneKey } from "../lib/site";
-import { Lines, ParallaxScene, Reveal } from "./Motion";
-import Scene from "./Scene";
+import { Lines, ParallaxPhoto, Reveal } from "./Motion";
+import Photo from "./Photo";
 
 export function Story() {
   return (
-    <section className="section relative overflow-hidden bg-ivory">
-      <div className="wrap grid items-center gap-16 lg:grid-cols-12">
-        <div className="relative lg:col-span-6">
-          <ParallaxScene kind="bedroom" title="Illustrated bedroom" className="aspect-[4/5] w-full" radius="300px 300px 0 0" />
-          <Reveal delay={0.3} className="absolute -bottom-8 right-0 max-w-[16rem] bg-emerald-deep p-7 text-ivory shadow-2xl sm:-right-6">
-            <p className="eyebrow mb-3 text-champagne">Your contact</p>
-            <p className="font-display text-3xl italic">{BUSINESS.contact}</p>
-            <a href={BUSINESS.phoneHref} className="ulink mt-3 block text-sm">
-              {BUSINESS.phone}
-            </a>
-          </Reveal>
+    <section className="section bg-ivory">
+      <div className="wrap grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
+        <div className="lg:col-span-6">
+          <ParallaxPhoto kind="bedroom" className="aspect-[4/5] w-full" position="58% 82%" />
         </div>
-        <div className="lg:col-span-6 lg:pl-10">
+        <div className="lg:col-span-6">
           <Reveal>
-            <p className="eyebrow mb-6 flex items-center gap-4 text-[#8a6a32]">
-              <span className="h-px w-10 bg-[#8a6a32]" />
-              Our story
-            </p>
+            <p className="eyebrow mb-8 text-[#7d6840]">Our story</p>
           </Reveal>
-          <Lines lines={["Dedicated to spaces", "that feel *welcoming.*"]} className="display-lg text-emerald-deep [--em:#9c7b3f] !text-[clamp(2.4rem,4.6vw,5.2rem)]" />
+          <Lines lines={["Dedicated to spaces", "that feel *welcoming.*"]} className="display-lg text-emerald-deep !text-[clamp(2.3rem,4.4vw,4.8rem)]" />
           <Reveal delay={0.15} className="mt-8 space-y-5 text-charcoal/80">
             <p className="lede">
               Oliveira&rsquo;s Cleaning Services is dedicated to helping homes and spaces feel clean, comfortable, and welcoming.
@@ -39,13 +29,13 @@ export function Story() {
               contact from the first conversation onward.
             </p>
           </Reveal>
-          <Reveal delay={0.25} className="mt-10 flex flex-wrap gap-4">
+          <Reveal delay={0.25} className="mt-10 flex flex-wrap items-center gap-6">
             <Link href="/services/" className="btn">
               Our Services <span className="arrow">→</span>
             </Link>
-            <Link href="/contact/" className="btn btn-ghost text-emerald-deep">
-              Get in Touch
-            </Link>
+            <a href={BUSINESS.phoneHref} className="ulink">
+              {BUSINESS.contact} · {BUSINESS.phone}
+            </a>
           </Reveal>
         </div>
       </div>
@@ -53,33 +43,31 @@ export function Story() {
   );
 }
 
-const STEPS: { n: string; t: string; d: string; scene: SceneKey }[] = [
-  { n: "01", t: "Understand Your Space", d: "We begin by learning about your cleaning needs.", scene: "living" },
-  { n: "02", t: "Focus on the Details", d: "We approach each space with care and attention.", scene: "kitchen" },
-  { n: "03", t: "Enjoy a Refreshed Environment", d: "Experience the comfort of a beautifully maintained space.", scene: "bedroom" },
+const STEPS: { n: string; t: string; d: string; scene: SceneKey; clean: number }[] = [
+  { n: "01", t: "Understand Your Space", d: "We begin by learning about your cleaning needs.", scene: "living", clean: 0.35 },
+  { n: "02", t: "Focus on the Details", d: "We approach each space with care and attention.", scene: "kitchen", clean: 0.7 },
+  { n: "03", t: "Enjoy a Refreshed Environment", d: "Experience the comfort of a beautifully maintained space.", scene: "bedroom", clean: 1 },
 ];
 
 export function Approach() {
   return (
-    <section className="section relative overflow-hidden bg-emerald-deep text-ivory">
-      <div className="pointer-events-none absolute -left-40 top-1/3 h-[44rem] w-[44rem] rounded-full border border-champagne/15" />
+    <section className="section bg-emerald-deep text-ivory">
       <div className="wrap">
         <Reveal>
-          <p className="eyebrow mb-6 text-champagne">Our approach</p>
+          <p className="eyebrow mb-8 text-champagne">Our approach</p>
         </Reveal>
         <Lines lines={["THREE QUIET STEPS,", "*ONE BEAUTIFUL RESULT.*"]} className="display-lg" />
-        <div className="relative mt-20 grid gap-14 lg:grid-cols-3 lg:gap-10">
+        <div className="mt-20 grid gap-14 lg:grid-cols-3 lg:gap-10">
           {STEPS.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.15} className={i === 1 ? "lg:mt-16" : ""}>
-              <div className="step group">
-                <span className="font-display text-8xl italic leading-none text-champagne">{s.n}</span>
-                <div className="relative mt-6 aspect-[4/3] overflow-hidden">
-                  <div className="absolute inset-0 transition-transform duration-[1600ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-110">
-                    <Scene kind={s.scene} clean={0.15 + i * 0.425} title={`${s.t} illustration`} />
+            <Reveal key={s.n} delay={i * 0.15}>
+              <div className="border-t border-ivory/30 pt-6">
+                <span className="font-display text-5xl text-champagne">{s.n}</span>
+                <div className="mt-6 aspect-[4/3] overflow-hidden">
+                  <div className="h-full w-full transition-transform duration-[1600ms] ease-[cubic-bezier(.22,1,.36,1)] hover:scale-105">
+                    <Photo kind={s.scene} clean={s.clean} />
                   </div>
-                  <div className="absolute inset-0 ring-1 ring-inset ring-champagne/40" />
                 </div>
-                <h3 className="mt-7 font-display text-4xl leading-none">{s.t}</h3>
+                <h3 className="mt-7 font-display text-3xl leading-tight">{s.t}</h3>
                 <p className="mt-3 max-w-xs text-ivory/70">{s.d}</p>
               </div>
             </Reveal>
@@ -90,11 +78,12 @@ export function Approach() {
   );
 }
 
+const POS: Record<string, string> = { bedroom: "60% 84%", kitchen: "58% 60%", living: "46% 62%", office: "52% 50%" };
 const VALUES: { t: string; d: string; scene: SceneKey; bg: string }[] = [
-  { t: "Care", d: "We approach every space with care and respect.", scene: "bedroom", bg: "#E9DFD2" },
-  { t: "Attention to Detail", d: "Thoughtful focus on the finer points of every room.", scene: "kitchen", bg: "#D6DED2" },
-  { t: "Respect for Every Space", d: "Your home or workplace is treated as it deserves.", scene: "living", bg: "#EFE5D0" },
-  { t: "Customer-Focused Service", d: "Your needs shape how we work, and communication is easy.", scene: "office", bg: "#CBD6D1" },
+  { t: "Care", d: "We approach every space with care and respect.", scene: "bedroom", bg: "#EBE4D8" },
+  { t: "Attention to Detail", d: "Thoughtful focus on the finer points of every room.", scene: "kitchen", bg: "#E1E5DC" },
+  { t: "Respect for Every Space", d: "Your home or workplace is treated as it deserves.", scene: "living", bg: "#F0E9DC" },
+  { t: "Customer-Focused Service", d: "Your needs shape how we work, and communication is easy.", scene: "office", bg: "#DADFDA" },
 ];
 
 export function Values() {
@@ -103,26 +92,26 @@ export function Values() {
     <section className="section transition-colors duration-1000" style={{ background: VALUES[i].bg }}>
       <div className="wrap">
         <Reveal>
-          <p className="eyebrow mb-6 text-[#8a6a32]">Our values</p>
+          <p className="eyebrow mb-8 text-[#7d6840]">Our values</p>
         </Reveal>
-        <Lines lines={["WHAT GUIDES", "*EVERY VISIT.*"]} className="display-lg text-emerald-deep [--em:#9c7b3f]" />
-        <div className="mt-16 grid gap-12 lg:grid-cols-12">
-          <ul className="lg:col-span-7" onMouseLeave={() => undefined}>
+        <Lines lines={["WHAT GUIDES", "*EVERY VISIT.*"]} className="display-lg text-emerald-deep" />
+        <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-20">
+          <ul className="lg:col-span-6">
             {VALUES.map((v, k) => (
               <li key={v.t} className="border-t border-emerald-deep/20 last:border-b">
                 <button
-                  className="value-row group flex w-full items-baseline gap-6 py-7 text-left text-emerald-deep"
+                  className="flex w-full items-baseline gap-6 py-7 text-left text-emerald-deep"
                   onMouseEnter={() => setI(k)}
                   onFocus={() => setI(k)}
                   onClick={() => setI(k)}
                   aria-pressed={i === k}
                 >
-                  <span className="font-display text-2xl italic text-[#8a6a32]">0{k + 1}</span>
+                  <span className="font-display text-lg opacity-60">0{k + 1}</span>
                   <span className="flex-1">
-                    <span className={`block font-display text-[clamp(2rem,4vw,3.8rem)] leading-none transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${i === k ? "translate-x-4 italic" : ""}`}>{v.t}</span>
+                    <span className={`block font-display text-[clamp(1.9rem,3.4vw,3.2rem)] leading-none transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${i === k ? "translate-x-3" : "opacity-60"}`}>{v.t}</span>
                     <span className={`grid transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] ${i === k ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 [@media(hover:none)]:grid-rows-[1fr] [@media(hover:none)]:opacity-100"}`}>
                       <span className="overflow-hidden">
-                        <span className="block max-w-md pt-3 pl-4 text-charcoal/75">{v.d}</span>
+                        <span className="block max-w-md pl-3 pt-3 text-charcoal/75">{v.d}</span>
                       </span>
                     </span>
                   </span>
@@ -130,17 +119,17 @@ export function Values() {
               </li>
             ))}
           </ul>
-          <div className="lg:col-span-5">
-            <div className="frame-gold relative aspect-[4/5] overflow-hidden lg:sticky lg:top-28" style={{ borderRadius: "220px 220px 0 0" }}>
+          <div className="lg:col-span-6">
+            <div className="relative aspect-[4/5] overflow-hidden lg:sticky lg:top-28">
               <AnimatePresence initial={false}>
                 <motion.div
                   key={VALUES[i].scene}
                   className="absolute inset-0"
-                  initial={{ opacity: 0, scale: 1.15 }}
-                  animate={{ opacity: 1, scale: 1, transition: { duration: 1.3, ease: [0.22, 1, 0.36, 1] } }}
+                  initial={{ opacity: 0, scale: 1.08 }}
+                  animate={{ opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } }}
                   exit={{ opacity: 0, transition: { duration: 1 } }}
                 >
-                  <Scene kind={VALUES[i].scene} clean={1} title={`${VALUES[i].t} — illustrated interior`} />
+                  <Photo kind={VALUES[i].scene} position={POS[VALUES[i].scene]} />
                 </motion.div>
               </AnimatePresence>
             </div>

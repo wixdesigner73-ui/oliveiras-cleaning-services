@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { getGsap, prefersReducedMotion } from "../lib/gsap";
-import Scene from "./Scene";
+import Photo from "./Photo";
 
 const STEPS = [
   { n: "01", t: "Grease & marks", d: "Splatter, rings and fingerprints settle on every surface." },
@@ -10,7 +10,7 @@ const STEPS = [
   { n: "03", t: "Gleaming", d: "Marble, steel and brass, clean and bright." },
 ];
 
-/** Scroll-scrubbed kitchen: a wipe sweeps across the room, revealing the clean version beneath. No people. */
+/** Scroll-scrubbed kitchen: a wipe sweeps across the room, revealing the clean version beneath. */
 export default function CleaningDemo() {
   const sec = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
@@ -36,7 +36,7 @@ export default function CleaningDemo() {
       dirty.current!.style.clipPath = `inset(0 0 0 ${x.toFixed(2)}%)`;
       head.current!.style.left = `${x.toFixed(2)}%`;
       trail.current!.style.width = `${Math.max(0, x - margin).toFixed(2)}%`;
-      stage.current!.style.transform = `translate(-50%, -50%) scale(${(1 + p * 0.08).toFixed(4)})`;
+      stage.current!.style.transform = `translate(-50%, -50%) scale(${(1 + p * 0.06).toFixed(4)})`;
       if (num.current) num.current.textContent = String(Math.round(p * 100));
       setStep(p < 0.33 ? 0 : p < 0.7 ? 1 : 2);
     };
@@ -61,34 +61,35 @@ export default function CleaningDemo() {
       <div className="demo-pin">
         <div ref={stage} className="demo-stage">
           <div className="absolute inset-0">
-            <Scene kind="kitchen" clean={1} title="Illustrated kitchen after cleaning" />
+            <Photo kind="kitchen" clean={1} alt="Kitchen after cleaning" />
           </div>
           <div ref={dirty} className="absolute inset-0" style={{ clipPath: staticMode ? "inset(0 0 0 100%)" : "inset(0 0 0 0%)" }}>
-            <Scene kind="kitchen" clean={0} title="Illustrated kitchen before cleaning" />
+            <Photo kind="kitchen" clean={0} alt="Kitchen before cleaning (illustrative)" />
           </div>
           <div ref={trail} className="demo-trail" aria-hidden />
-          <div ref={head} className="demo-head" aria-hidden style={staticMode ? { left: "100%" } : undefined}>
-            <span className="demo-pad" />
-          </div>
+          <div ref={head} className="demo-head" aria-hidden style={staticMode ? { left: "100%" } : undefined} />
         </div>
         <div className="demo-veil" />
         <div className="demo-copy">
           <p className="eyebrow text-champagne">Interactive cleaning demonstration</p>
-          <h2 id="demo-title" className="display-lg mt-4 text-ivory !text-[clamp(2.6rem,6vw,6rem)]">
-            From grime<br />
-            <em className="text-champagne">to gleam.</em>
+          <h2 id="demo-title" className="display-lg mt-4 text-ivory !text-[clamp(2.4rem,5.4vw,5.4rem)]">
+            From grime
+            <br />
+            <em>to gleam.</em>
           </h2>
-          <p className="mt-4 max-w-sm text-ivory/75">Keep scrolling to wipe the kitchen clean, surface by surface.</p>
+          <p className="mt-4 max-w-sm text-ivory/80">Keep scrolling to wipe the kitchen clean, surface by surface.</p>
         </div>
         <div className="demo-readout" aria-live="polite">
-          <span className="font-display text-[clamp(4rem,10vw,9rem)] italic leading-none text-ivory">
+          <span className="font-display text-[clamp(3.6rem,9vw,8rem)] leading-none text-ivory">
             <span ref={num}>{staticMode ? "100" : "0"}</span>
             <span className="text-champagne">%</span>
           </span>
-          <span className="mt-4 block eyebrow text-champagne">{STEPS[step].n} — {STEPS[step].t}</span>
-          <span className="mt-1 block max-w-[17rem] font-display text-2xl italic text-ivory">{STEPS[step].d}</span>
+          <span className="eyebrow mt-4 block text-champagne">
+            {STEPS[step].n} — {STEPS[step].t}
+          </span>
+          <span className="mt-1 block max-w-[17rem] font-display text-xl text-ivory">{STEPS[step].d}</span>
         </div>
-        <span className="demo-tag eyebrow">Illustrative cleaning concept</span>
+        <span className="demo-tag">Illustrative cleaning concept</span>
       </div>
     </section>
   );

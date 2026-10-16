@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Bodoni_Moda, Jost } from "next/font/google";
 import "./globals.css";
-import "./sections.css";
-import "./pages.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
-const display = Cormorant_Garamond({
+// Bodoni Moda: high-contrast fashion/luxury serif. Jost: clean geometric sans for text.
+const display = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  variable: "--f-display",
   display: "swap",
 });
-const body = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
+const body = Jost({ subsets: ["latin"], weight: ["300", "400", "500"], variable: "--f-body", display: "swap" });
 
 export const metadata: Metadata = {
   icons: { icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/icon.svg` },
-  title: "Oliveira's Cleaning Services | Kendall, Miami",
+  title: "Oliveira’s Cleaning Services | Kendall, Miami",
   description:
-    "Oliveira's Cleaning Services — thoughtful cleaning for homes and spaces in Kendall, Miami, Florida. Request a free quote.",
+    "Oliveira’s Cleaning Services — thoughtful cleaning for homes and spaces in Kendall, Miami, Florida. Request a free quote.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
