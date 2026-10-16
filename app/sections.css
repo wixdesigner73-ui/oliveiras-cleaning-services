@@ -1,0 +1,44 @@
+/* ───────── ROOM EXPLORER ───────── */
+.explorer {
+  background: radial-gradient(100% 80% at 80% 30%, var(--bg2) 0%, transparent 70%), var(--bg1);
+  transition: --bg1 1.2s cubic-bezier(0.65, 0, 0.35, 1), --bg2 1.2s cubic-bezier(0.65, 0, 0.35, 1), --accent 1.2s cubic-bezier(0.65, 0, 0.35, 1), color 0.9s;
+}
+.hotspot { position: absolute; z-index: 6; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 0.6rem; cursor: pointer; }
+.hotspot-dot { position: relative; width: 14px; height: 14px; border-radius: 99px; background: #f8f5ee; box-shadow: 0 0 0 4px rgba(248, 245, 238, 0.35); }
+.hotspot-dot::after { content: ""; position: absolute; inset: -8px; border-radius: 99px; border: 1px solid #f8f5ee; animation: ping 2.4s ease-out infinite; }
+@keyframes ping { from { transform: scale(0.5); opacity: 1; } to { transform: scale(1.7); opacity: 0; } }
+.hotspot-label {
+  position: absolute; left: 22px; top: 50%; transform: translate(-8px, -50%); opacity: 0; pointer-events: none; white-space: nowrap;
+  background: rgba(16, 47, 41, 0.88); color: #f8f5ee; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.5rem 0.8rem; border-radius: 99px; backdrop-filter: blur(6px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.hotspot:hover .hotspot-label, .hotspot:focus-visible .hotspot-label, .hotspot:focus .hotspot-label { opacity: 1; transform: translate(0, -50%); }
+@media (min-width: 900px) { .hotspot-label { opacity: 1; transform: translate(0, -50%); } }
+.room-chip {
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent); border-radius: 99px; padding: 0.55rem 1rem; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: all 0.5s var(--ease);
+}
+.room-chip:hover { border-color: currentColor; }
+.plan-room { cursor: pointer; }
+.plan-room:hover rect { fill-opacity: 0.25; }
+
+/* ───────── COMPARE ───────── */
+.compare { position: relative; overflow: hidden; cursor: ew-resize; touch-action: pan-y; user-select: none; background: #111; }
+.compare-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.compare-line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--color-champagne); box-shadow: 0 0 24px rgba(203, 179, 139, 0.8); z-index: 5; }
+.compare-handle {
+  position: absolute; z-index: 6; top: 50%; left: var(--pos); width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 99px; display: grid; place-items: center;
+  background: var(--color-champagne); color: var(--color-emerald-deep); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35); transition: transform 0.4s var(--ease);
+}
+.compare:hover .compare-handle, .compare-handle:focus-visible { transform: scale(1.1); }
+.compare-chip {
+  position: absolute; z-index: 4; top: 1rem; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+  padding: 0.45rem 0.8rem; border-radius: 99px; background: rgba(16, 47, 41, 0.65); color: #f8f5ee; backdrop-filter: blur(6px); pointer-events: none;
+}
+
+/* ───────── WHY ───────── */
+.why-card { position: relative; }
+.why-icon { display: inline-block; transition: transform 0.8s var(--ease); }
+.why-card:hover .why-icon { transform: translateY(-6px) rotate(-6deg); }
+.why-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--color-champagne); transform: scaleX(0); transform-origin: left; transition: transform 0.9s var(--ease); }
+.why-card:hover .why-bar { transform: scaleX(1); }
